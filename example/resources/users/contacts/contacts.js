@@ -1,17 +1,24 @@
+var answer = {StatusCode : 200,
+      headers : {"Content-Type" : 'application/json'},
+      body : ""};
+
 var Contacts = {
   Resource: {
     get: function(uid, cid, callback) {
-      callback(null, {uid: uid, cid: cid});
+      answer.body = JSON.stringify({uid: uid, cid: cid});
+      callback(null, answer);
     },
 
     post: function(uid, cid, callback) {
-      callback(null, {body: this.body});
+      answer.body = JSON.stringify({body: this.body});
+      callback(null, answer);
     }
   },
 
   Collection: {
     get: function(uid, callback) {
-      callback(null, {uid: uid, all: 'contacts'});
+      answer.body = JSON.stringify({uid: uid, all: 'contacts'});
+      callback(null, answer);
     }
   }
 };

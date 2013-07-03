@@ -1,13 +1,19 @@
+var answer = {StatusCode : 200,
+      headers : {"Content-Type" : 'application/json'},
+      body : ""};
+
 var Songs = {
   Resource: {
     get: function(sid, callback) {
-      callback(null, {sid: sid});
+      answer.body = JSON.stringify({sid: sid});
+      callback(null, answer);
     }
   },
 
   Collection: {
     get: function(callback) {
-      callback(null, {all: 'songs'});
+      answer.body = JSON.stringify({all: 'songs'});
+      callback(null, answer);
     }
   }
 };

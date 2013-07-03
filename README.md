@@ -41,17 +41,22 @@ Where a file with the same name as the parent directory will contain the Resourc
 ## Resource Method
 
 An over-simplified user resource may look like this:
+    var answer = {StatusCode : 200,
+      headers : {"Content-Type" : 'application/json'},
+      body : ""};
 
     var Users = {
       Resource: {
         get: function(uid, callback) {
-          callback(null, {uid: uid, query: this.query});
+          answer.body = JSON.stringify({uid: uid, query: this.query});
+          callback(null, answer);
         }
       },
 
       Collection: {
         get: function(callback) {
-          callback(null, {all: 'users'});
+          answer.body = JSON.stringify({all: 'users'});
+          callback(null, answer);
         }
       }
     }
